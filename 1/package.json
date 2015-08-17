@@ -1,0 +1,14 @@
+{
+  "name": "neural",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/neural.js",
+  "scripts": {
+    "test": "mocha --reporter=spec test/*-test.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
+}
