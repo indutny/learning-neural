@@ -72,12 +72,20 @@ exports.train = {
   labels: l.loadLabels('train-labels-idx1-ubyte'),
   pairs: null
 };
+exports.train.pairs = l.pair(exports.train);
+
+exports.validate = {
+  images: exports.train.images.slice(-10000),
+  labels: exports.train.labels.slice(-10000),
+  pairs: exports.train.pairs.slice(-10000)
+};
+exports.train.images = exports.train.images.slice(0, -10000);
+exports.train.labels = exports.train.labels.slice(0, -10000);
+exports.train.pairs = exports.train.pairs.slice(0, -10000);
 
 exports.test = {
   images: l.loadImages('t10k-images-idx3-ubyte'),
   labels: l.loadLabels('t10k-labels-idx1-ubyte'),
   pairs: null
 };
-
-exports.train.pairs = l.pair(exports.train);
 exports.test.pairs = l.pair(exports.test);
