@@ -7,8 +7,10 @@ function Network(sizes) {
   this.weights = new Array(this.layers - 1);
   this.biases = new Array(this.layers - 1);
 
-  for (var i = 0; i < this.weights.length; i++)
-    this.weights[i] = new Matrix(sizes[i], sizes[i + 1]).randomize();
+  for (var i = 0; i < this.weights.length; i++) {
+    this.weights[i] = new Matrix(sizes[i], sizes[i + 1])
+        .randomize(Math.sqrt(1 / sizes[i]));
+  }
 
   for (var i = 0; i < this.biases.length; i++)
     this.biases[i] = new Vector(sizes[i + 1]).randomize();
@@ -128,4 +130,16 @@ Network.prototype.backprop = function backprop(input,
   for (var i = 1; i < outputs.length; i++)
     outputs[i].free();
   delta.free();
+};
+
+Network.prototype.cost = function cost(input, expected) {
+  var output = this.run(input);
+
+  var cost = 0;
+  for (var i = 0; i < output.values.length; i++) {
+    cost -= expected.values[i] * Math.log(output.values[i]) +
+            (1 - expected.values[i]) * Math.log(1 - output.values[i]);
+  }
+
+  return cost;
 };

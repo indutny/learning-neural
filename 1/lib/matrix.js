@@ -24,9 +24,9 @@ Matrix.prototype.zero = function zero() {
   return this;
 };
 
-Matrix.prototype.randomize = function randomize() {
+Matrix.prototype.randomize = function randomize(variance) {
   for (var i = 0; i < this.values.length; i++)
-    this.values[i] = rand.generate();
+    this.values[i] = rand.generate() * variance;
 
   return this;
 };
