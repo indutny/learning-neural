@@ -2,7 +2,7 @@ var data = require('./data');
 
 var neural = require('./');
 
-var n = neural.create([ 28 * 28, 30, 10 ]);
+var n = neural.create([ 28 * 28, 100, 10 ]);
 
 function validate(n, data) {
   var match = 0;

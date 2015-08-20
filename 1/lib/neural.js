@@ -119,11 +119,10 @@ Network.prototype.backprop = function backprop(input,
     output = input;
 
     // Propagate delta
-    var prime = output.apply(this.sigmaPrime);
+    output.iapply(this.sigmaPrime);
     var oldDelta = delta;
-    delta = delta.mul(weights).ihadamard(prime);
+    delta = delta.mul(weights).ihadamard(output);
     oldDelta.free();
-    prime.free();
   }
 
   for (var i = 1; i < outputs.length; i++)

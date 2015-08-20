@@ -107,7 +107,10 @@ Vector.prototype.ihadamard = function ihadamard(other) {
 };
 
 Vector.prototype.inspect = function inspect() {
-  return '(' + this.values.map(function(val) {
+  var out = new Array(this.values.length);
+  for (var i = 0; i < this.values.length; i++)
+    out[i] = this.values[i];
+  return '(' + out.map(function(val) {
     return Math.round(val * 100) / 100;
   }).join(', ') + ')';
 };
